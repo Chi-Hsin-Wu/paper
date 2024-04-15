@@ -66,7 +66,7 @@ class ModelTraining(object):
             logger.warning("Check if InfluxDB instance is up? or Not sufficient data for Validation in last 10 minutes")
             time.sleep(20)
             self.db.read_data(valid=True)
-        self.test_data = self.db.data.dropna()
+        self.test_data = self.db.data
         logger.debug("Validation on {} Samples".format(self.test_data.shape[0]))
 
     def isoforest(self, outliers_fraction=0.05, random_state=4):

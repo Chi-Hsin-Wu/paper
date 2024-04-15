@@ -33,12 +33,18 @@
                     "container": "ad",
                     "port": 4561,
                     "description": "rmr route port for ad"
+                },
+                {
+                    "name" : "trafficxapp",
+                    "container" : "ad",
+                    "port" : 4570,
+                    "description" : "TCP port to trafficxapp"
                 }
             ]
         },
         "rmr": {
             "protPort": "tcp:4560",
-            "maxSize": 2072,
+            "maxSize": 5000,
             "numWorkers": 1,
             "rxMessages": ["TS_ANOMALY_ACK"],
             "txMessages": ["TS_ANOMALY_UPDATE"],

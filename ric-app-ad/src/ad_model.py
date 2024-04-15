@@ -102,7 +102,7 @@ class CAUSE(object):
                 query = """select * from {} where "{}" = \'{}\' and time<now() and time>now()-120s""".format(db.meas, db.ue, sample.iloc[i][db.ue])
                 normal = db.query(query)
                 if normal:
-                    normal = normal[db.meas][[db.thpt, db.rsrp, db.rsrq,db.rssinr]]
+                    normal = normal[db.meas][[db.thpt, db.rsrp,db.rssinr]]
                     deg = self.find(sample.loc[i, :], normal.max(), db, threshold)
                     if deg:
                         sample.loc[i, 'Degradation'] = deg
@@ -118,11 +118,11 @@ class CAUSE(object):
         """ store if a particular parameter is below threshold and return """
         deg = []
         if (row[db.thpt]==0):
-            deg.append('Throughput')
+            deg.append("Throughput")
         if row[db.rsrp] < l[db.rsrp]-15:
-            deg.append('RSRP')
+            deg.append("RSRP")
         if row[db.rssinr] < l[db.rssinr]-5:
-            deg.append('RSSINR')
+            deg.append("RSSINR")
         if len(deg) == 0:
             deg = False
         else:

@@ -63,15 +63,15 @@ def train_model():
         mt = ModelTraining(db)
         mt.train()
 
-def send_tcp_packet(dst_ip,dst_port,message):
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.connect((dst_ip,dst_port))
-        print("Connect TS with TCP")
-        while True:
-                s.sendall(message.encode())
-                time.sleep(2)
-                response=s.recv(8192)
-                print(f"Received and sent back: {response.decode()}")
+#def send_tcp_packet(dst_ip,dst_port,message):
+#    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+#        s.connect((dst_ip,dst_port))
+#        print("Connect TS with TCP")
+#        while True:
+#                s.sendall(message)
+#                time.sleep(2)
+#                response=s.recv(65536)
+#                print(f"Received and sent back: {response.decode()}")
 
 
 def predict(self):
@@ -129,14 +129,14 @@ def predict_anomaly(self, df):
 def msg_to_ts(self, val):
     # send message from ad to ts
     logger.debug("Sending Anomalous UE to TS")
-    success = self.rmr_send(val, 30003,1000)
+    success = self.rmr_send(val, 30003,10000)
     print(success)
     if success:
         logger.info(" Message to TS: message sent Successfully")
         # rmr receive to get the acknowledgement message from the traffic steering.
-    else:
-        send_tcp_packet("10.244.0.166",4560,val)
-        logger.info("Message to TS via TCP")
+    #else:
+    #    send_tcp_packet("10.244.0.231",4570,val)
+    #    logger.info("Message to TS via TCP")
 
 
     for summary, sbuf in self.rmr_get_messages():
