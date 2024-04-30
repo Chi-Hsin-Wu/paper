@@ -1,3 +1,0 @@
-# this is used by CI jobs to apply a tag when it builds the image
----
-tag: '1.2.5'
