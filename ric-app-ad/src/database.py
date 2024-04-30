@@ -48,7 +48,7 @@ class DATABASE(object):
         fetched data from database
     """
 
-    def __init__(self, dbname='UEData', user='admin', password='1234', host="10.244.0.201", port='8086', path='', ssl=False):
+    def __init__(self, dbname='UEData', user='admin', password='1234', host="10.244.0.230", port='8086', path='', ssl=False):
         self.data = None
         self.host = host
         self.port = port
