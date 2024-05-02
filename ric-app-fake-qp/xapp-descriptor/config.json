@@ -1,0 +1,41 @@
+{
+    "xapp_name": "fake-qp",
+    "version": "0.0.6",
+    "containers": [
+        {
+            "name": "fakeqp",
+            "image": {
+                "registry": "xApp-registry.local:5008",
+                "name": "fakeqpxapp",
+                "tag": "0.0.5"
+            }
+        }
+    ],
+    "messaging": {
+        "ports": [
+            {
+                "name": "rmr-data",
+                "container": "qp",
+                "port": 4560,
+                "rxMessages": ["TS_UE_LIST"],
+                "txMessages": ["TS_QOE_PREDICTION"],
+                "policies": [],
+                "description": "rmr receive data port for qp"
+            },
+            {
+                "name": "rmr-route",
+                "container": "qp",
+                "port": 4561,
+                "description": "rmr route port for qp"
+            }
+        ]
+    },
+    "rmr": {
+        "protPort": "tcp:4560",
+        "maxSize": 5000,
+        "numWorkers": 1,
+        "rxMessages": ["TS_UE_LIST"],
+        "txMessages": ["TS_QOE_PREDICTION"],
+        "policies": []
+    }
+}
